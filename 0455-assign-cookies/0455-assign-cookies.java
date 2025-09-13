@@ -8,13 +8,13 @@ class Solution {
         int r = 0;
         int count = 0;
         while(l<n && r<m){
-            if(g[l] <= s[r]){
+            if(s[r] >= g[l]){
                 count++;
                 l++;
                 r++;
             }
             else{
-                l++;
+                r++;
             }
             
         }
