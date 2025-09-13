@@ -4,22 +4,21 @@ class Solution {
         int m = s.length;
         Arrays.sort(g);
         Arrays.sort(s);
+        int l = 0;
+        int r = 0;
         int count = 0;
-        Integer[] dp = new Integer[m];
-        for(int i = 0 ; i < n ; i ++){
-            for(int j = 0 ; j < m ; j ++){
-                if(dp[j] == null){
-                    if(s[j]>=g[i]){
-                        count++;
-                        dp[j] = 1;
-                        break;
-                    }
-
-                } 
-                
+        while(l<n && r<m){
+            if(g[l] <= s[r]){
+                count++;
+                l++;
+                r++;
             }
+            else{
+                l++;
+            }
+            
         }
+
         return count;
-        
     }
 }
