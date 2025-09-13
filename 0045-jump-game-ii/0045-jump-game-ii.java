@@ -1,15 +1,28 @@
 class Solution {
     public int jump(int[] nums) {
         int n = nums.length;
-        int max_ind = 0;
-        int count = 0;
-        for(int i=0; i<n; i++){
-            if(max_ind >= n-1) break;
-            if(i > max_ind) return 0;
-            max_ind = Math.max(max_ind, i + nums[i]);
-            count++;
+        Integer[] list = new Integer[n];
+        list[n - 1] = 0;  
+
+        for (int i = n - 2; i >= 0; i--) {
+            if (nums[i] != 0) {
+                int min_jump = Integer.MAX_VALUE;
+
+                for (int j = nums[i]; j >= 1; j--) {
+                    if ((i + j) >= n - 1) {
+                        min_jump = 1;  
+                        break;
+                    } else if (list[i + j] != null) {  
+                        min_jump = Math.min(min_jump, 1 + list[i + j]);
+                    }
+                }
+
+                if (min_jump != Integer.MAX_VALUE) {
+                    list[i] = min_jump;
+                }
+            }
         }
 
-        return count;
+        return list[0];
     }
 }
